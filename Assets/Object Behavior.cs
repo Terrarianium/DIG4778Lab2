@@ -42,4 +42,12 @@ public class ObjectBehaviorEditor : Editor
             EditorGUILayout.HelpBox("Object has no size!", MessageType.Error);
         }
     }
+
+    public void EnableDisable()
+    {
+        if (GUILayout.Button("Disable/Enable Objecys", GUILayout.Height(40)))
+        {
+
+        }
+    }
 }
