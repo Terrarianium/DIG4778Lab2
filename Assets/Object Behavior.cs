@@ -23,8 +23,6 @@ public class ObjectBehaviorEditor : Editor
     {
         base.OnInspectorGUI();
 
-<<<<<<< Updated upstream
-=======
         SizeWarnings();
         SelectionButtons();
     }
@@ -56,10 +54,6 @@ public class ObjectBehaviorEditor : Editor
     public void SelectionButtons()
     {
         // This will select all shapes regardless if they're spheres or cubes
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
         if (GUILayout.Button("Select all shapes"))
         {
             var allShapes = GameObject.FindObjectsOfType<ObjectBehavior>();
@@ -82,16 +76,10 @@ public class ObjectBehaviorEditor : Editor
             Selection.objects = allCubeGameObjects;
         }
         EditorGUILayout.EndHorizontal();
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> Stashed changes
         // This will deselect all objects
         if (GUILayout.Button("Clear selection"))
         {
             Selection.objects = new Object[] { (target as ObjectBehavior).gameObject };
         }
->>>>>>> Stashed changes
     }
 }
