@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -5,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEditor.TerrainTools;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 [ExecuteInEditMode]
 public class ObjectBehavior : MonoBehaviour
@@ -27,6 +29,7 @@ public class ObjectBehaviorEditor : Editor
 
         SizeWarnings();
         SelectionButtons();
+        EnableDisable();
     }
 
     public void SizeWarnings()
@@ -39,14 +42,6 @@ public class ObjectBehaviorEditor : Editor
         else if (size.floatValue <= -0)
         {
             EditorGUILayout.HelpBox("Size is too small!", MessageType.Error);
-        }
-    }
-
-    public void EnableDisable()
-    {
-        if (GUILayout.Button("Disable/Enable Objecys", GUILayout.Height(40)))
-        {
-
         }
     }
     
@@ -75,6 +70,30 @@ public class ObjectBehaviorEditor : Editor
         if (GUILayout.Button("Clear selection"))
         {
             Selection.objects = new Object[] { (target as ObjectBehavior).gameObject };
+        }
+    }
+
+    public void EnableDisable()
+    {
+        foreach (GameObject obj in Selection.objects)
+        {
+            if (obj.activeInHierarchy)
+            {
+                GUI.backgroundColor = Color.green;
+                break;
+            } else
+            {
+                GUI.backgroundColor = Color.grey;
+                break;
+            }
+        }
+        
+        if (GUILayout.Button("Disable/Enable Objects", GUILayout.Height(40)))
+        {
+            foreach (var obj in GameObject.FindObjectsOfType<ObjectBehavior>(true))
+            {
+                obj.gameObject.SetActive(!obj.gameObject.activeSelf);
+            }
         }
     }
 }
