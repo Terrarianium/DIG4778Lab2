@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEditor.TerrainTools;
 using UnityEngine;
@@ -24,6 +25,7 @@ public class ObjectBehaviorEditor : Editor
         base.OnInspectorGUI();
 
         SizeWarnings();
+        SelectionButtons();
     }
 
     public void SizeWarnings()
@@ -41,5 +43,29 @@ public class ObjectBehaviorEditor : Editor
         {
             EditorGUILayout.HelpBox("Object has no size!", MessageType.Error);
         }
+    }
+
+    public void SelectionButtons()
+    {
+        if (GUILayout.Button("Select all shapes"))
+        {
+            var allShapes = GameObject.FindObjectsOfType<ObjectBehavior>();
+            var allShapeGameObjects = allShapes.Select(shape  => shape.gameObject).ToArray();
+            Selection.objects = allShapeGameObjects;
+        }
+        EditorGUILayout.BeginHorizontal();
+        if (GUILayout.Button("Select all spheres"))
+        {
+            var allSpheres = GameObject.FindObjectsOfType<SphereCollider>();
+            var allSphereGameObjets = allSpheres.Select(sphere => sphere.gameObject).ToArray();
+            Selection.objects = allSphereGameObjets;
+        }
+        if (GUILayout.Button("Select all cubes"))
+        {
+            var allCubes = GameObject.FindObjectsOfType<BoxCollider>();
+            var allCubeGameObjects = allCubes.Select(cube => cube.gameObject).ToArray();
+            Selection.objects = allCubeGameObjects;
+        }
+        EditorGUILayout.EndHorizontal();
     }
 }
