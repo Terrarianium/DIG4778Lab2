@@ -45,6 +45,14 @@ public class ObjectBehaviorEditor : Editor
         }
     }
 
+    public void EnableDisable()
+    {
+        if (GUILayout.Button("Disable/Enable Objecys", GUILayout.Height(40)))
+        {
+
+        }
+    }
+    
     public void SelectionButtons()
     {
         if (GUILayout.Button("Select all shapes"))
