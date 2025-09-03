@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEditor.TerrainTools;
 using UnityEngine;
@@ -35,13 +36,9 @@ public class ObjectBehaviorEditor : Editor
         {
             EditorGUILayout.HelpBox("Size is too big!", MessageType.Warning);
         }
-        else if (size.floatValue <= -2)
+        else if (size.floatValue <= -0)
         {
-            EditorGUILayout.HelpBox("Size is too small! Also negative?", MessageType.Warning);
-        }
-        else if (size.floatValue == 0)
-        {
-            EditorGUILayout.HelpBox("Object has no size!", MessageType.Error);
+            EditorGUILayout.HelpBox("Size is too small!", MessageType.Error);
         }
     }
 
@@ -50,7 +47,7 @@ public class ObjectBehaviorEditor : Editor
         if (GUILayout.Button("Select all shapes"))
         {
             var allShapes = GameObject.FindObjectsOfType<ObjectBehavior>();
-            var allShapeGameObjects = allShapes.Select(shape  => shape.gameObject).ToArray();
+            var allShapeGameObjects = allShapes.Select(shape => shape.gameObject).ToArray();
             Selection.objects = allShapeGameObjects;
         }
         EditorGUILayout.BeginHorizontal();
@@ -67,5 +64,9 @@ public class ObjectBehaviorEditor : Editor
             Selection.objects = allCubeGameObjects;
         }
         EditorGUILayout.EndHorizontal();
+        if (GUILayout.Button("Clear selection"))
+        {
+            Selection.objects = new Object[] { (target as ObjectBehavior).gameObject };
+        }
     }
 }
