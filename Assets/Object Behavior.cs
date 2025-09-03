@@ -1,14 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
+using UnityEditor.TerrainTools;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class ObjectBehavior : MonoBehaviour
 {
     public float size;
 
-    [ExecuteInEditMode]
-    private void Update()
+    void Update()
     {
         transform.localScale = new Vector3(size, size, size);
     }
@@ -16,5 +17,8 @@ public class ObjectBehavior : MonoBehaviour
 
 public class ObjectBehaviorEditor : Editor
 {
+    public override void OnInspectorGUI()
+    {
 
+    }
 }
