@@ -56,6 +56,9 @@ public class ObjectBehaviorEditor : Editor
     public void SelectionButtons()
     {
         // This will select all shapes regardless if they're spheres or cubes
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         if (GUILayout.Button("Select all shapes"))
         {
@@ -80,7 +83,10 @@ public class ObjectBehaviorEditor : Editor
         }
         EditorGUILayout.EndHorizontal();
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
         // This will deselect all objects
         if (GUILayout.Button("Clear selection"))
         {
